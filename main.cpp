@@ -32,6 +32,7 @@ int main(){
 			cin >> grado;
 			cont = grado;
 			cont2 = grado+1;
+	
 			int* array = new int[grado+1];
 			string* array2 = NULL;
 			int* arreglo = new int[grado+1];
@@ -75,30 +76,64 @@ int main(){
 				}
 				cout << "" << endl;
 			}*/			
-
+			int conteo = 0;
+			int conteoarray = 0;
 			if(tablero[0][0][0] == 0){
-				cout << "entro m" << endl;
-				for(int i=0; i<cont2; i++){
-				cout << i << endl;	
-					tablero[0][0][i] = array[i];
-					tablero[0][1][i] = arreglo[i];
-					if(i=0){
-						tablero[0][2][i] = array[i]; 
+			     for(int m=0;m<grado+1;m++){
+				for(int i=0;i<grado+1;i++){
+					
+					tablero[m][0][i] = array[i];
+					tablero[m][1][i] = arreglo[i];
+					if(i==0){
+						tablero[m][2][i] = array[i]; 
 					}else{
-						tablero[0][2][i] = 0;
+						tablero[m][2][i] = 0;
 					}
-					cout << "fin" << endl;
+					
 				}
-				cout << "escribio" << endl;
-				for(int i =0;i<3;i++){
-					for(int j=0;j<grado+1;j++){
-						cout << tablero[0][i][j];
+			     }
+				//for(int m=0;m<grado+1;m++){
+					for(int i =0;i<3;i++){
+						for(int j=0;j<grado+1;j++){
+							cout << tablero[0][i][j] << "  ";
+						}
+						cout << "" << endl;
 					}
-					cout << "" << endl;
-				}
-				cout << "imprimio" << endl;
-				
+				//}
+				conteoarray++;
+				conteo++;
 			}
+
+			while(conteoarray < grado+1){
+				cout << "entra"<< endl;
+				if(tablero[0][0][0] != 0){
+					for(int i =0;i<3;i++){
+					   for(int j=0;j<grado+1;j++){
+						tablero[conteoarray][i][j] = tablero[conteoarray-1][i][j];
+						cout << tablero[conteoarray][i][j];
+					   }
+						cout << " " << endl;
+					}
+					for(int j=0;j<grado+1;j++){
+						int a = tablero[conteoarray][2][conteo-1];
+						int b = tablero[conteoarray][0][conteo];
+						tablero[conteoarray][2][conteo] = a+b;
+						conteoarray++;
+						conteo++;
+					}
+					for(int m=0;m<grado+1;m++){
+						for(int i =0;i<3;i++){
+							for(int j=0;j<grado+1;j++){
+								cout << tablero[0][i][j] << "  ";
+							}
+							cout << "" << endl;
+						}
+					}
+				}
+			}
+
+			
+			
 
 			//int matriz = new Matriz[];
 			break;
