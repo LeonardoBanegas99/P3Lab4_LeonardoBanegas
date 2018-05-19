@@ -25,6 +25,7 @@ int main(){
 			int grado = 0;
 			int cont = 0;
 			int cont2 = 0;
+			int conteito = 0;
 			int a = 0;
 			string pot;
 			ostringstream ss;
@@ -32,7 +33,7 @@ int main(){
 			cin >> grado;
 			cont = grado;
 			cont2 = grado+1;
-	
+			conteito = grado;
 			int* array = new int[grado+1];
 			string* array2 = NULL;
 			int* arreglo = new int[grado+1];
@@ -92,50 +93,68 @@ int main(){
 					
 				}
 			     }
-				//for(int m=0;m<grado+1;m++){
-					for(int i =0;i<3;i++){
-						for(int j=0;j<grado+1;j++){
-							cout << tablero[0][i][j] << "  ";
-						}
-						cout << "" << endl;
-					}
-				//}
+				
 				conteoarray++;
 				conteo++;
 			}
 
 			while(conteoarray < grado+1){
-				cout << "entra"<< endl;
 				if(tablero[0][0][0] != 0){
 					for(int i =0;i<3;i++){
-					   for(int j=0;j<grado+1;j++){
+					    for(int j=0;j<grado+1;j++){
 						tablero[conteoarray][i][j] = tablero[conteoarray-1][i][j];
-						cout << tablero[conteoarray][i][j];
 					   }
-						cout << " " << endl;
+					
 					}
-					for(int j=0;j<grado+1;j++){
+					for(int j=0;j<grado;j++){
+						
 						int a = tablero[conteoarray][2][conteo-1];
 						int b = tablero[conteoarray][0][conteo];
+						tablero[conteoarray][1][conteo] = a;
 						tablero[conteoarray][2][conteo] = a+b;
 						conteoarray++;
 						conteo++;
+						
+						for(int i =0;i<3;i++){
+					    		for(int j=0;j<grado+1;j++){
+							if(conteoarray < grado+1 ){
+							tablero[conteoarray][i][j] = tablero[conteoarray-1][i][j];
+					   		}else{
+								break;
+							}
+							}
+						}
 					}
 					for(int m=0;m<grado+1;m++){
 						for(int i =0;i<3;i++){
 							for(int j=0;j<grado+1;j++){
-								cout << tablero[0][i][j] << "  ";
+								cout << tablero[m][i][j] << "  ";
 							}
 							cout << "" << endl;
 						}
+						cout << "" << endl;
 					}
 				}
-			}
-
-			
-			
-
-			//int matriz = new Matriz[];
+				cout << "El residuo es:" << tablero[grado][2][grado] << endl;
+				cout << "El cociente es: ";
+				for(int m=grado;m<grado+1;m++){
+					for(int i =2;i<3;i++){
+						for(int j=0;j<grado;j++){
+							if(tablero[m][i][j] > 0){
+								conteito--;
+								if(conteito > 0){
+								cout << tablero[m][i][j] << "x^" <<conteito<< "+";
+								}else{
+									cout << tablero[m][i][j];
+								}
+							}
+						}
+					}
+							cout << "" << endl;
+				}
+						cout << "" << endl;
+				}
+					
 			break;
 		}
 		case 3:{
